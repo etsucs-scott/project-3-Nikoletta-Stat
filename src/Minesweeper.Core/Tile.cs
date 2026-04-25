@@ -1,5 +1,6 @@
 ﻿namespace Minesweeper.Core
 {
+    // Tile contains the information for an individual tile on the board.
     public class Tile
     {
         public bool isFlagged { get; set; }

@@ -2,6 +2,7 @@ using Minesweeper.Core;
 
 namespace Minesweeper.Tests
 {
+    // 10 deterministic unit tests
     public class Tests
     {
         [Fact]

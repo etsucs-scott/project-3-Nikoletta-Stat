@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace Minesweeper.Core
 {
+
+    // Game.cs holds the actual game loop logic.
     public class Game
     {
         public GameBoard board { get; }
@@ -29,6 +31,8 @@ namespace Minesweeper.Core
             this.timer = new Stopwatch();
         }
 
+        // GetSizeAndSeed() asks for user input for board size and the seed integer. It handles invalid input
+        // and uses the current time for the seed if left blank.
         public void GetSizeAndSeed ()
         {
                 Console.Clear();
@@ -70,6 +74,8 @@ namespace Minesweeper.Core
                 }  
         }
 
+        // RunGame holds the actual game loop. It starts the timer and ends it when the loop is exited. It
+        // handles user commands such as reveal, flag, and quit.
         public void RunGame()
         {
             moveCount = 0;
@@ -139,6 +145,8 @@ namespace Minesweeper.Core
             EndOfGame();
         }
 
+        // RevealTile() checks requirements to reveal a tile, then calls board.HitMine() to reveal the tile and
+        // check if the player won the game.
         public void RevealTile (int r, int c)
         {
             if (board.board[r, c].isRevealed || board.board[r, c].isFlagged)
@@ -151,6 +159,7 @@ namespace Minesweeper.Core
             }
         }
 
+        // FlagTile() checks the requirements to flag a tile, then flags or unflags the tile.
         public void FlagTile (int r, int c)
         {
             if (board.board[r, c].isRevealed)
@@ -158,6 +167,8 @@ namespace Minesweeper.Core
             board.board[r, c].isFlagged = !board.board[r, c].isFlagged;
         }
 
+        // CheckIfWin() checks each tile on the board for win requirements and returns true if the player won,
+        // false if not.
         public bool CheckIfWin ()
         {
             for (int r = 0; r < board.size;  r++)
@@ -171,6 +182,8 @@ namespace Minesweeper.Core
             return true;
         }
 
+        // EndOfGame() displays the final message depending on if the user won or not. If the user won, it
+        // also saves their score to the high scores file.
         public void EndOfGame()
         {
             Console.Clear();

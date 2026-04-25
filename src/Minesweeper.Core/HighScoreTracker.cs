@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Minesweeper.Core
 {
+    // HighScoreTracker creates the file path where high scores are stored.
     public class HighScoreTracker
     {
         private const string dir = "data";
@@ -18,6 +19,7 @@ namespace Minesweeper.Core
             LoadScores();
         }
 
+        // LoadScores() loads the initial high scores to the file.
         public void LoadScores ()
         {
             try
@@ -65,6 +67,7 @@ namespace Minesweeper.Core
             }
         }
 
+        // AddNewScore() adds a high score to a file and creates a new HighScore object.
         public void AddNewScore(int size, int seconds, int moves, int seed, DateTime timestamp)
         {
             scores.Add(new HighScore
@@ -78,6 +81,7 @@ namespace Minesweeper.Core
 
         }
 
+        // SaveScoresToFile() sorts the scores by seconds and saves the top 5 to the file.
         public void SaveScoresToFile ()
         {
             try
@@ -105,6 +109,7 @@ namespace Minesweeper.Core
             }
         }
         
+        // TopFive() returns a list of the top 5 high scores per size, ordered by seconds then moves.
         public List<HighScore> TopFive (int size)
         {
             List<HighScore> topFive = scores

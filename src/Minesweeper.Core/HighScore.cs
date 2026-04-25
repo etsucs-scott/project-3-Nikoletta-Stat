@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Minesweeper.Core
 {
+    // HighScore contains the values for an individual high score entry.
     public class HighScore
     {
         public int size { get; set; }

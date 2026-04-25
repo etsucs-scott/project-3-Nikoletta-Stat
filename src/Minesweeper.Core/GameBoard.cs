@@ -1,5 +1,6 @@
 ﻿namespace Minesweeper.Core;
 
+// GameBoard holds the array of tiles to make up the actual board and handles the mine logic.
 public class GameBoard
 {
     public int size { get; }
@@ -26,6 +27,7 @@ public class GameBoard
         }
     }
 
+    // Display() writes the board to the screen with each tile's symbol. It also writes a row and col header.
     public void Display()
     {
         Console.Write("  ");
@@ -57,6 +59,8 @@ public class GameBoard
         }   
     }
 
+    // PlaceMines() places a set number of mines based on the board size after the user reveals the first
+    // row and col.
     public void PlaceMines(int initialRow, int initialCol)
     {
         int placed = 0;
@@ -74,10 +78,14 @@ public class GameBoard
         }
     }
 
+    // inBounds() checks to make sure the row and col that the user chose is in the bounds of the board edges.
     public bool inBounds (int r, int c)
     {
         return (r >= 0) && (c >= 0) && (r < size) && (c < size);
     }
+
+    // SetAdjacentMines() counts the number of mines around each tile and sets that tile's adjacent mine count
+    // to that number.
     public void SetAdjacentMines ()
     {
         for (int r = 0; r < size; r++)
@@ -113,6 +121,8 @@ public class GameBoard
         }
     }
 
+    // HitMine() calls PlaceMines() and SetAdjacentMines() after the first reveal, then reveals the tile.
+    // It checks for a bomb and calls CascadeReveal().
     public bool HitMine (int r, int c)
     {
         if (!minesPlaced)
@@ -138,6 +148,9 @@ public class GameBoard
 
     }
 
+    // CascadeReveal() checks every tile around the intial tile for adjacent mines. If one of the adjacent tiles
+    // does not have adjacent mines, it is added to a queue and that tile's adjacent tiles are checked too.
+    // It uses a breadth-first search.
     public void CascadeReveal (int r, int c)
     {
         Queue<(int row, int col)> queue = new Queue<(int, int)>();
