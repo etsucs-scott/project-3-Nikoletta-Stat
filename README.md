@@ -20,24 +20,34 @@ There are 3 board size options in the start menu:
 
 ### Input Commands
 r row col --> Reveal a tile at coordinates (row, col)
+
 f row col --> Flag or unflag a tile at coordinates (row, col)
+
 q --> Quit game at any time
 
 ###  Seed Usage
 Users can enter an integer for a seed to make mine placement deterministic and random.
+
 If no integer or an invalid seed is entered, the current timestamp is used as the seed.
 
 ### High Scores File
 The top high scores for each board are based on lowest completion time in seconds, then moves as a tiebreaker.
+
 The scores are stored in a .csv file in the data folder.
+
 File path: data/highscores.csv
+
 Formatted: size,seconds,moves,seed,timestamp
 
 ### Board Symbols
 '#' = unrevealed tile
+
 '.' = revealed tile with no adjacent mines
+
 'b' = revealed bomb, only shown if player lost the game
+
 'f' = flagged tile
+
 '1-8' = the number of mines adjacent to that tile
 
 ## Unit Tests
